@@ -32,9 +32,9 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: undeploy previous version of jar files
-      run: curl -v -u admin:admin 'http://18.237.213.164:8080/manager/text/undeploy?path=/petclinic'
+      run: curl -v -u admin:admin 'http://18.237.213.164:8080/manager/text/undeploy?path=/spring-petclinic'
     - name: deploy to tomcat
-      run: curl -v -u admin:admin -T /home/runner/work/spring-petclinic/spring-petclinic/target/spring-petclinic-2.5.0-SNAPSHOT.jar 'http://18.237.213.164:8080/manager/text/deploy?path=/petclinic'
+      run: curl -v -u admin:admin -T /home/runner/work/spring-petclinic/spring-petclinic/target/spring-petclinic-2.5.0-SNAPSHOT.jar 'http://18.237.213.164:8080/manager/text/deploy?path=/spring-petclinic'
      
 
   
