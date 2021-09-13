@@ -57,9 +57,9 @@ jobs:
         port: 22
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
-          cd /home/ec2-user/apache-tomcat-9.0.52/bin/shutdown.sh
-          cp -r /home/ec2-user/github/workspace/target/spring-petclinic-2.5.0-SNAPSHOT.jar /home/ec2-user/apache-tomcat-9.0.52/webapps
-          cd /home/ec2-user/apache-tomcat-9.0.52/bin/startup.sh
+          sudo cd /home/ec2-user/apache-tomcat-9.0.52/bin/shutdown.sh
+          sudo cp -r /home/ec2-user/github/workspace/target/spring-petclinic-2.5.0-SNAPSHOT.jar /home/ec2-user/apache-tomcat-9.0.52/webapps
+          sudo cd /home/ec2-user/apache-tomcat-9.0.52/bin/startup.sh
   
       
 
