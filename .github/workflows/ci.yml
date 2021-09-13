@@ -51,7 +51,7 @@ jobs:
         source: "/home/runner/work/spring-petclinic/spring-petclinic/target/spring-petclinic-2.5.0-SNAPSHOT.jar"
         target: "/home/ec2-user/"
     - name: deploy to tomcat
-      run: curl -v -u admin:admin -T spring-petclinic-2.5.0-SNAPSHOT.jar 'http://18.237.213.164:8080/manager/text/deploy?path=/petclinic'
+      run: curl -v -u admin:admin -T /home/runner/work/spring-petclinic/spring-petclinic/target/spring-petclinic-2.5.0-SNAPSHOT.jar 'http://18.237.213.164:8080/manager/text/deploy?path=/petclinic'
      
 #     - name: deploy jar file to tomcat server
 #       uses: appleboy/ssh-action@master
