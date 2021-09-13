@@ -31,36 +31,12 @@ jobs:
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: remove old war/jar files
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SERVER_IP_ADDRESS }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        port: 22
-        key: ${{ secrets.SERVER_SSH_KEY }}
-        script: |
-          sudo rm -rf /home/ec2-user/github
-          sudo rm -rf /home/ec2-user/apache-tomcat-9.0.52/webapps/spring-petclinic-2.5.0-SNAPSHOT.jar
-    - name: copy file via ssh key
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.SERVER_IP_ADDRESS }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        port: 22
-        key: ${{ secrets.SERVER_SSH_KEY }}
-        source: "/home/runner/work/spring-petclinic/spring-petclinic/target/spring-petclinic-2.5.0-SNAPSHOT.jar"
-        target: "/home/ec2-user/"
+    - name: undeploy previous version of jar files
+      run: curl -v -u admin:admin 'http://18.237.213.164:8080/manager/text/undeploy?path=/petclinic'
     - name: deploy to tomcat
       run: curl -v -u admin:admin -T /home/runner/work/spring-petclinic/spring-petclinic/target/spring-petclinic-2.5.0-SNAPSHOT.jar 'http://18.237.213.164:8080/manager/text/deploy?path=/petclinic'
      
-#     - name: deploy jar file to tomcat server
-#       uses: appleboy/ssh-action@master
-#       with:
-#         host: ${{ secrets.SERVER_IP_ADDRESS }}
-#         username: ${{ secrets.SERVER_USERNAME }}
-#         port: 22
-#         key: ${{ secrets.SERVER_SSH_KEY }}
-#         script: sudo sh tomcat-script.sh
+
   
       
 
