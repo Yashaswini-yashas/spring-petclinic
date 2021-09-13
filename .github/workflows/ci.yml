@@ -57,7 +57,7 @@ jobs:
         username: ${{ secrets.SERVER_USERNAME }}
         port: 22
         key: ${{ secrets.SERVER_SSH_KEY }}
-        script: sh tomcat-script.sh
+        script: sudo sh tomcat-script.sh
   
       
 
